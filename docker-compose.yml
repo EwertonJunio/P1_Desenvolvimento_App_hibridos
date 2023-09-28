@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+      - postgresql
+    environment:
+      DB_USER: user
+      DB_PASS: password
+
+  mongodb:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+
+  postgresql:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hybridapp
